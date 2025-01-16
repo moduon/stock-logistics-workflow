@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-03 03:55+0000\n"
-"PO-Revision-Date: 2024-12-09 10:06+0000\n"
+"PO-Revision-Date: 2025-01-16 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -117,12 +117,12 @@ msgstr "Visualizza avviso scadenza"
 #. module: product_expiry_simple
 #: model:ir.model,name:product_expiry_simple.model_stock_assign_serial
 msgid "Stock Assign Serial Numbers"
-msgstr ""
+msgstr "Assegna numeri seriali giacenza"
 
 #. module: product_expiry_simple
 #: model:ir.model,name:product_expiry_simple.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: product_expiry_simple
 #: model:ir.model,name:product_expiry_simple.model_stock_picking
