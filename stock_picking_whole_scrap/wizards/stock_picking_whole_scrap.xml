@@ -9,7 +9,7 @@
             <form>
                 <group string="Detailed Operations">
                     <field name="line_ids" nolabel="1">
-                        <tree editable="top" create="0">
+                        <list editable="top" create="0">
                             <field name="product_id" force_save="1" />
                             <field
                                 name="lot_id"
@@ -32,8 +32,14 @@
                                 force_save="1"
                                 groups="uom.group_uom"
                             />
-                            <field name="move_line_id" invisible="1" />
-                        </tree>
+                            <field name="should_replenish" widget="boolean_toggle" />
+                            <field
+                                name="scrap_reason_tag_ids"
+                                widget="many2many_tags"
+                                options="{'no_create_edit': True}"
+                            />
+                            <field name="move_line_id" column_invisible="1" />
+                        </list>
                     </field>
                 </group>
                 <group>

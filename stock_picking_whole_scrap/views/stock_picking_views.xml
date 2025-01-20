@@ -2,18 +2,14 @@
 <!-- Copyright 2018 Tecnativa - Sergio Teruel
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record id="view_picking_form" model="ir.ui.view">
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form" />
-        <field name="arch" type="xml">
-            <field name="state" position="before">
-                <button
-                    name="button_whole_scrap"
-                    type="object"
-                    string="Scrap All"
-                    attrs="{'invisible': ['|', '|', '&amp;', ('picking_type_code', '!=', 'incoming'), ('state', 'in', ('draft', 'cancel', 'waiting')), '&amp;', ('picking_type_code', '=', 'incoming'), ('state', '!=', 'done'), ('is_locked', '=', False)]}"
-                />
-            </field>
-        </field>
+    <record id="action_scrap_all" model="ir.actions.server">
+        <field name="name">Scrap All</field>
+        <field name="model_id" ref="stock.model_stock_picking" />
+        <field name="binding_model_id" ref="stock.model_stock_picking" />
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+        if records:
+            action = records.button_whole_scrap()</field>
     </record>
 </odoo>

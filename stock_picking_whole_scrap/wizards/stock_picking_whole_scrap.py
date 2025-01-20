@@ -1,5 +1,5 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare, float_round
 
@@ -12,9 +12,7 @@ class StockPickingScrapLine(models.TransientModel):
     product_id = fields.Many2one(
         comodel_name="product.product", string="Product", readonly=True
     )
-    lot_id = fields.Many2one(
-        comodel_name="stock.production.lot", string="Lot", readonly=True
-    )
+    lot_id = fields.Many2one(comodel_name="stock.lot", string="Lot", readonly=True)
     package_id = fields.Many2one(
         comodel_name="stock.quant.package", string="Package", readonly=True
     )
@@ -27,6 +25,13 @@ class StockPickingScrapLine(models.TransientModel):
     )
     wizard_id = fields.Many2one(comodel_name="wiz.stock.picking.scrap", string="Wizard")
     move_line_id = fields.Many2one(comodel_name="stock.move.line", string="Move Line")
+    should_replenish = fields.Boolean(
+        string="Replenish Quantities",
+        help="Trigger replenishment for scrapped products",
+    )
+    scrap_reason_tag_ids = fields.Many2many(
+        comodel_name="stock.scrap.reason.tag", string="Scrap Reason"
+    )
 
 
 class StockPickingScrap(models.TransientModel):
@@ -48,18 +53,18 @@ class StockPickingScrap(models.TransientModel):
     @api.model
     def default_get(self, fields):
         if len(self.env.context.get("active_ids", list())) > 1:
-            raise UserError(_("You may only scrap one picking at a time!"))
+            raise UserError(self.env._("You may only scrap one picking at a time!"))
         res = super().default_get(fields)
         scrap_lines = []
         picking = self.env["stock.picking"].browse(self.env.context.get("active_id"))
         if picking:
             res.update({"picking_id": picking.id})
             if picking.state != "done":
-                raise UserError(_("You may only scrap pickings in done state"))
+                raise UserError(self.env._("You may only scrap pickings in done state"))
             for move_line in picking.move_line_ids:
                 if move_line.move_id.scrapped:
                     continue
-                quantity = move_line.qty_done
+                quantity = move_line.quantity
                 quantity = float_round(
                     quantity, precision_rounding=move_line.product_uom_id.rounding
                 )
@@ -90,15 +95,16 @@ class StockPickingScrap(models.TransientModel):
     def _prepare_stock_scrap(self, scrap_line):
         vals = {
             "product_id": scrap_line.product_id.id,
-            "product_uom_id": scrap_line.uom_id.id,
+            "product_uom_id": scrap_line.move_line_id.product_uom_id.id,
             "lot_id": scrap_line.move_line_id.lot_id.id,
             "package_id": scrap_line.move_line_id.result_package_id.id,
             "owner_id": scrap_line.move_line_id.owner_id.id,
-            "move_id": scrap_line.move_line_id.move_id.id,
             "picking_id": scrap_line.move_line_id.picking_id.id,
             "location_id": scrap_line.move_line_id.location_dest_id.id,
             "scrap_location_id": self.scrap_location_id.id,
             "scrap_qty": scrap_line.quantity,
+            "should_replenish": scrap_line.should_replenish,
+            "scrap_reason_tag_ids": [(6, 0, scrap_line.scrap_reason_tag_ids.ids)],
         }
         return vals
 
@@ -109,12 +115,15 @@ class StockPickingScrap(models.TransientModel):
             if (
                 float_compare(
                     line.quantity,
-                    line.move_line_id.qty_done,
-                    precision_rounding=line.uom_id.rounding,
+                    line.move_line_id.quantity,
+                    precision_rounding=line.product_id.uom_id.rounding,
                 )
                 > 0
             ):
-                raise UserError(_("You can't scrap more quantity that done it"))
+                raise UserError(
+                    self.env._("You can't scrap more quantity that done it")
+                )
             new_scraps += StockScrap.create(self._prepare_stock_scrap(line))
+        # import wdb; wdb.set_trace()
         new_scraps.do_scrap()
         return new_scraps

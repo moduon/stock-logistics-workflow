@@ -1,6 +1,6 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, models
+from odoo import models
 
 
 class StockPicking(models.Model):
@@ -9,7 +9,7 @@ class StockPicking(models.Model):
     def button_whole_scrap(self):
         self.ensure_one()
         return {
-            "name": _("Whole Scrap"),
+            "name": self.env._("Whole Scrap"),
             "view_mode": "form",
             "res_model": "wiz.stock.picking.scrap",
             "type": "ir.actions.act_window",

@@ -3,21 +3,14 @@
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase, tagged
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 @tagged("post_install", "-at_install")
 class TestStockPickingScrapQuick(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.picking_type_out = cls.warehouse.out_type_id
@@ -31,7 +24,7 @@ class TestStockPickingScrapQuick(TransactionCase):
         )
         cls.partner = cls.env["res.partner"].create({"name": "Partner - test"})
         cls.product = cls.env["product.product"].create(
-            {"name": "test", "type": "product"}
+            {"name": "test", "type": "consu", "is_storable": True}
         )
         cls.quant = cls.env["stock.quant"].create(
             {
@@ -71,20 +64,20 @@ class TestStockPickingScrapQuick(TransactionCase):
 
     def test_scrap_load_view(self):
         self.picking.action_assign()
-        self.picking.move_line_ids.qty_done = 2.0
+        self.picking.move_line_ids.quantity = 2.0
         self.picking.button_validate()
         wiz = self._create_scrap_wizard()
         self.assertEqual(len(wiz.line_ids), 1)
 
     def test_scrap_picking_not_done(self):
         self.picking.action_assign()
-        self.picking.move_line_ids.qty_done = 2.0
+        self.picking.move_line_ids.quantity = 2.0
         with self.assertRaises(UserError):
             self._create_scrap_wizard()
 
     def test_scrap_more_qty_that_done(self):
         self.picking.action_assign()
-        self.picking.move_line_ids.qty_done = 2.0
+        self.picking.move_line_ids.quantity = 2.0
         self.picking.button_validate()
         wiz = self._create_scrap_wizard()
         wiz.line_ids.quantity = 10.0
@@ -93,7 +86,7 @@ class TestStockPickingScrapQuick(TransactionCase):
 
     def test_do_scrap(self):
         self.picking.action_assign()
-        self.picking.move_line_ids.qty_done = 2.0
+        self.picking.move_line_ids.quantity = 2.0
         self.picking.button_validate()
         wiz = self._create_scrap_wizard()
         scraps = wiz.create_scrap()
