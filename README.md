@@ -45,7 +45,7 @@ addon | version | maintainers | summary
 [stock_lot_production_date](stock_lot_production_date/) | 16.0.1.0.0 |  | Stock Lot Production Date
 [stock_lot_scrap](stock_lot_scrap/) | 16.0.1.0.0 |  | This module adds a button in Production Lot/Serial Number view form to Scrap all products contained.
 [stock_move_free_reservation_reassign](stock_move_free_reservation_reassign/) | 16.0.1.0.1 |  | Try to reassign a move when its reservation is removed due to the related quant becoming unavailable
-[stock_move_line_auto_fill](stock_move_line_auto_fill/) | 16.0.1.1.0 |  | Stock Move Line auto fill
+[stock_move_line_auto_fill](stock_move_line_auto_fill/) | 16.0.1.1.1 |  | Stock Move Line auto fill
 [stock_move_line_change_lot](stock_move_line_change_lot/) | 16.0.1.0.1 |  | Stock Move Line Change Lot
 [stock_move_line_expiration_date_required](stock_move_line_expiration_date_required/) | 16.0.1.0.2 |  | Stock Move Line Expiration Date Required
 [stock_move_line_lock_qty_done](stock_move_line_lock_qty_done/) | 16.0.1.1.0 |  | Restrict modifications to the done quantity in validated stock moves
@@ -56,14 +56,14 @@ addon | version | maintainers | summary
 [stock_move_propagate_first_move](stock_move_propagate_first_move/) | 16.0.1.0.1 |  | This addon propagate the picking type of the original move to all next moves created from procurement
 [stock_no_negative](stock_no_negative/) | 16.0.1.0.2 |  | Disallow negative stock levels by default
 [stock_override_procurement](stock_override_procurement/) | 16.0.1.0.0 |  | This technical module allow to override procurement values
-[stock_owner_restriction](stock_owner_restriction/) | 16.0.1.1.1 |  | Do not reserve quantity with assigned owner
+[stock_owner_restriction](stock_owner_restriction/) | 16.0.1.1.2 |  | Do not reserve quantity with assigned owner
 [stock_partner_delivery_window](stock_partner_delivery_window/) | 16.0.1.0.1 |  | Define preferred delivery time windows for partners
-[stock_picking_auto_create_lot](stock_picking_auto_create_lot/) | 16.0.3.0.1 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Auto create lots for incoming pickings
+[stock_picking_auto_create_lot](stock_picking_auto_create_lot/) | 16.0.3.0.2 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Auto create lots for incoming pickings
 [stock_picking_auto_create_lot_sequence](stock_picking_auto_create_lot_sequence/) | 16.0.1.0.0 |  | Stock Picking Auto Create Lot Sequence
 [stock_picking_back2draft](stock_picking_back2draft/) | 16.0.1.0.0 |  | Reopen cancelled pickings
 [stock_picking_batch_extended](stock_picking_batch_extended/) | 16.0.1.1.1 | [![gurneyalex](https://github.com/gurneyalex.png?size=30px)](https://github.com/gurneyalex) [![carlosdauden](https://github.com/carlosdauden.png?size=30px)](https://github.com/carlosdauden) [![i-vyshnevska](https://github.com/i-vyshnevska.png?size=30px)](https://github.com/i-vyshnevska) | Allows manage a lot of pickings in batch
-[stock_picking_batch_extended_account](stock_picking_batch_extended_account/) | 16.0.1.0.2 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Generates invoices when batch is set to Done state
-[stock_picking_batch_extended_account_sale_type](stock_picking_batch_extended_account_sale_type/) | 16.0.1.0.2 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Generates invoices when batch is set to Done state
+[stock_picking_batch_extended_account](stock_picking_batch_extended_account/) | 16.0.1.0.3 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Generates invoices when batch is set to Done state
+[stock_picking_batch_extended_account_sale_type](stock_picking_batch_extended_account_sale_type/) | 16.0.1.0.3 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Generates invoices when batch is set to Done state
 [stock_picking_batch_invoice_frequency](stock_picking_batch_invoice_frequency/) | 16.0.1.0.1 | [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Invoice Sale Orders from Stock Pickin Batch
 [stock_picking_batch_print_invoices](stock_picking_batch_print_invoices/) | 16.0.1.1.0 | [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) | Print invoices from stock picking batchs
 [stock_picking_batch_print_pickings](stock_picking_batch_print_pickings/) | 16.0.1.1.0 | [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) | Print Picking from Stock Picking Batch
@@ -78,10 +78,10 @@ addon | version | maintainers | summary
 [stock_picking_group_by_partner_by_carrier_by_date](stock_picking_group_by_partner_by_carrier_by_date/) | 16.0.1.0.0 |  | Stock Picking: group by partner and carrier and scheduled date
 [stock_picking_import_serial_number](stock_picking_import_serial_number/) | 16.0.1.0.0 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Import S/N from excel file for incoming pickings
 [stock_picking_info_lot](stock_picking_info_lot/) | 16.0.1.0.0 |  | Add lot information on Stock Transfer lines
-[stock_picking_invoice_link](stock_picking_invoice_link/) | 16.0.1.1.2 |  | Adds link between pickings and invoices
+[stock_picking_invoice_link](stock_picking_invoice_link/) | 16.0.1.1.3 |  | Adds link between pickings and invoices
 [stock_picking_kind](stock_picking_kind/) | 16.0.1.0.0 |  | Computes the kind of picking based on locations
 [stock_picking_line_sequence](stock_picking_line_sequence/) | 16.0.1.0.1 |  | Manages the order of stock moves by displaying its sequence
-[stock_picking_mass_action](stock_picking_mass_action/) | 16.0.1.1.0 |  | Stock Picking Mass Action
+[stock_picking_mass_action](stock_picking_mass_action/) | 16.0.1.1.1 |  | Stock Picking Mass Action
 [stock_picking_move_package_to_package](stock_picking_move_package_to_package/) | 16.0.1.0.1 |  | Move entire package to another package
 [stock_picking_operation_quick_change](stock_picking_operation_quick_change/) | 16.0.1.0.0 |  | Change location of all picking operations
 [stock_picking_partner_note](stock_picking_partner_note/) | 16.0.1.1.0 |  | Add partner notes on picking
@@ -92,7 +92,7 @@ addon | version | maintainers | summary
 [stock_picking_restrict_cancel_printed](stock_picking_restrict_cancel_printed/) | 16.0.1.0.3 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Prevent canceling a stock transfer if printed.
 [stock_picking_return_lot](stock_picking_return_lot/) | 16.0.1.1.0 |  | Propagate SN/lots from origin picking to return picking.
 [stock_picking_return_restricted_qty](stock_picking_return_restricted_qty/) | 16.0.1.0.0 |  | Restrict the return to delivered quantity
-[stock_picking_sale_order_link](stock_picking_sale_order_link/) | 16.0.1.0.0 |  | Link between picking and sale order
+[stock_picking_sale_order_link](stock_picking_sale_order_link/) | 16.0.1.0.1 |  | Link between picking and sale order
 [stock_picking_send_by_mail](stock_picking_send_by_mail/) | 16.0.1.0.0 |  | Send stock picking by email
 [stock_picking_show_backorder](stock_picking_show_backorder/) | 16.0.1.0.0 |  | Provides a new field on stock pickings, allowing to display the corresponding backorders.
 [stock_picking_show_return](stock_picking_show_return/) | 16.0.1.0.1 |  | Show returns on stock pickings
